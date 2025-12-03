@@ -1,0 +1,35 @@
+{
+  "name": "propanalyzer-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for PropAnalyzer - Real Estate Analysis Platform",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "axios": "^1.6.0",
+    "recharts": "^2.10.0",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8.4.0"
+  },
+  "devDependencies": {
+    "eslint": "8.0.0",
+    "eslint-config-next": "14.0.0"
+  },
+  "keywords": [
+    "real-estate",
+    "analysis",
+    "nextjs",
+    "react",
+    "iran"
+  ],
+  "author": "PropAnalyzer Team",
+  "license": "MIT"
+}

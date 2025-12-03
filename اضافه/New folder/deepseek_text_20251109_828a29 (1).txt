@@ -1,0 +1,17 @@
+1. جمع‌آوری داده
+   ↓
+سایت‌های املاک (دیوار، شیپور، آی‌هوم)
+   ↓
+Crawler (Scrapy) → PostgreSQL
+
+2. پردازش و تحلیل
+   ↓
+PostgreSQL → AI Service (FastAPI + ML)
+   ↓
+پیش‌بینی قیمت + تحلیل بازار
+
+3. نمایش به کاربر
+   ↓
+Frontend (Next.js) ← Backend (Django REST)
+   ↓
+رابط کاربری + نمودارها + پیش‌بینی‌ها

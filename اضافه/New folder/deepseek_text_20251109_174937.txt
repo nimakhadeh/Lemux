@@ -1,0 +1,10 @@
+C:\PropAnalyzer\
+├── 📁 backend\
+├── 📁 crawler\
+├── 📁 ai\
+├── 📁 frontend\
+├── 📁 docker\
+├── 📁 scripts\
+├── 📄 .env.example
+├── 📄 requirements.txt
+└── 📄 README_FA.md

@@ -1,0 +1,5 @@
+Scrapy==2.11.0
+psycopg2-binary==2.9.9
+python-decouple==3.8
+fake-useragent==1.4.0
+scrapy-rotating-proxies==0.9.1
