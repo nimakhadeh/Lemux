@@ -4,6 +4,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.http import JsonResponse
+from apps.dashboard.views import health_check
 
 def home(request):
     """صفحه اصلی API"""
@@ -26,4 +27,5 @@ urlpatterns = [
     path('api/users/', include('apps.users.urls')),
     path('api/analytics/', include('apps.analytics.urls')),
     path('api/dashboard/', include('apps.dashboard.urls')),
+    path('api/health/', health_check, name='health'),
 ]
