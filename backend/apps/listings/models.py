@@ -101,9 +101,9 @@ class Listing(models.Model):
         ordering = ['-created_at']
         db_table = 'backend_propanalyzer_api_listing'
         indexes = [
-            models.Index(fields=['city', 'district']),
-            models.Index(fields=['price']),
-            models.Index(fields=['created_at']),
+            models.Index(fields=['city', 'district'], name='listing_city_district_idx'),
+            models.Index(fields=['price'], name='listing_price_idx'),
+            models.Index(fields=['created_at'], name='listing_created_idx'),
         ]
     
     def __str__(self):
