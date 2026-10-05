@@ -2,8 +2,8 @@
 """روتر بررسی سلامت سرویس"""
 
 from fastapi import APIRouter, HTTPException
-from ...app.db import get_db
-from ...app.models.price_predictor import price_predictor
+from app.db import get_db
+from app.models.price_predictor import price_predictor
 import logging
 
 router = APIRouter()
@@ -102,7 +102,7 @@ async def train_model():
         listings_list = [dict(item) for item in listings_data]
         
         # پردازش داده‌ها
-        from ...app.utils.data_processor import data_processor
+        from app.utils.data_processor import data_processor
         df = data_processor.clean_listings_data(listings_list)
         
         if df.empty:
