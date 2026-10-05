@@ -6,8 +6,8 @@ from pydantic import BaseModel
 from typing import List, Dict, Any
 import logging
 
-from ...app.db import get_db
-from ...app.utils.data_processor import data_processor
+from app.db import get_db
+from app.utils.data_processor import data_processor
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
