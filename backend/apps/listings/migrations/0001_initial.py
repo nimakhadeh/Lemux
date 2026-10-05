@@ -42,9 +42,9 @@ class Migration(migrations.Migration):
                 "ordering": ["-created_at"],
                 "db_table": "backend_propanalyzer_api_listing",
                 "indexes": [
-                    models.Index(fields=["city", "district"], name="apps_listin_city_di_6c8f7c_idx"),
-                    models.Index(fields=["price"], name="apps_listin_price_0f6b2b_idx"),
-                    models.Index(fields=["created_at"], name="apps_listin_created_3a0d18_idx"),
+                    models.Index(fields=["city", "district"], name="listing_city_district_idx"),
+                    models.Index(fields=["price"], name="listing_price_idx"),
+                    models.Index(fields=["created_at"], name="listing_created_idx"),
                 ],
             },
         ),
