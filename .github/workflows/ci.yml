@@ -12,23 +12,44 @@ jobs:
     defaults:
       run:
         working-directory: backend
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_DB: propanalyzer_ci
+          POSTGRES_USER: propanalyst
+          POSTGRES_PASSWORD: ci-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U propanalyst -d propanalyzer_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Django checks
+      - name: Django checks and tests
         env:
           SECRET_KEY: ci-only-secret-key
           DEBUG: "False"
           ALLOWED_HOSTS: localhost,127.0.0.1
-          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: propanalyzer_ci
+          POSTGRES_USER: propanalyst
+          POSTGRES_PASSWORD: ci-password
+          POSTGRES_HOST: 127.0.0.1
+          POSTGRES_PORT: "5432"
         run: |
           python manage.py check
           python manage.py makemigrations --check --dry-run
-          python -m compileall -q .
+          python manage.py migrate --noinput
+          python manage.py test
 
   ai:
     runs-on: ubuntu-latest
