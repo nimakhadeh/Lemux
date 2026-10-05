@@ -1,0 +1,64 @@
+name: Lemux CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Django checks
+        env:
+          SECRET_KEY: ci-only-secret-key
+          DEBUG: "False"
+          ALLOWED_HOSTS: localhost,127.0.0.1
+          POSTGRES_PASSWORD: ci-only-password
+        run: |
+          python manage.py check
+          python manage.py makemigrations --check --dry-run
+          python -m compileall -q .
+
+  ai:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Compile and import
+        run: |
+          python -m compileall -q .
+          python -c "from app.main import app; assert app.title == 'PropAnalyzer AI API'"
+
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate production compose
+        working-directory: docker
+        env:
+          POSTGRES_DB: ci_db
+          POSTGRES_USER: ci_user
+          POSTGRES_PASSWORD: ci_password
+          SECRET_KEY: ci-secret-key
+        run: docker compose config --quiet
+      - name: Validate development compose
+        working-directory: docker
+        run: docker compose -f docker-compose.dev.yml config --quiet
