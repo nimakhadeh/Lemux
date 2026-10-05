@@ -99,6 +99,7 @@ class Listing(models.Model):
         verbose_name = 'ملک'
         verbose_name_plural = 'املاک'
         ordering = ['-created_at']
+        db_table = 'backend_propanalyzer_api_listing'
         indexes = [
             models.Index(fields=['city', 'district']),
             models.Index(fields=['price']),
