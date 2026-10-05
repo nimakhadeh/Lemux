@@ -52,7 +52,7 @@ The project is designed as a portfolio-grade example of **backend engineering + 
 - Dockerized backend, crawler, AI and frontend services
 - Separate development and deployment Compose configurations
 - Deployment and maintenance shell scripts
-- Automated test/lint workflow documented in the project structure
+- CI workflow for Django checks, migrations, compilation and Docker configuration validation
 
 ## Project Structure
 
@@ -63,7 +63,7 @@ Lemux/
 ├── crawler/        # Data collection and processing
 ├── ai/             # FastAPI + ML services
 ├── docker/         # Compose, Nginx and monitoring
-├── scripts/        # Setup, deploy, update and cleanup
+├── scripts/        # Setup, deploy, backup, monitoring and cleanup
 └── .env.example    # Environment configuration template
 ```
 
@@ -102,12 +102,11 @@ python manage.py test
 
 ## Deployment
 
-The repository includes scripts for setup, deployment, data updates and cleanup.
+The repository includes scripts for setup, deployment, backups, monitoring and cleanup.
 
 ```bash
 ./scripts/setup.sh
 ./scripts/deploy.sh
-./scripts/update_data.sh
 ```
 
 Use the project's `.env.example` as the starting point for environment configuration.
@@ -129,4 +128,3 @@ Lemux demonstrates the ability to work beyond a single Django application:
 
 Backend-focused Software Developer  
 Python · Django · DRF · PostgreSQL · Docker · AI/ML Integration
-
