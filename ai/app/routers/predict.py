@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 import logging
 
-from ...app.models.price_predictor import price_predictor
+from app.models.price_predictor import price_predictor
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
